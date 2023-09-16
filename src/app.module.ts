@@ -6,6 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as Joi from 'joi';
 
 import { UsersEntity } from './users/entities/users.entity';
+import { BoardEntity } from './board/entities/board.entity';
+
+import { UsersModule } from './users/users.module';
+import { BoardModule } from './board/board.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,8 +36,11 @@ import { UsersEntity } from './users/entities/users.entity';
       database: process.env.DB_DATABASE,
       synchronize: true,
       logging: true,
-      entities: [UsersEntity]
-    })
+      entities: [UsersEntity, BoardEntity]
+    }),
+    BoardModule, 
+    UsersModule, 
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -5,17 +5,14 @@ export class UsersEntity{
     @PrimaryGeneratedColumn()
     uid: number
 
-    @Column({ type: 'varchar', unique: true })
-    userId: string
+    @Column({ type: 'varchar', length: 50, unique: true })
+    email: string
 
-    @Column({ type: 'varchar' })
+    @Column({ type: 'varchar', length: 100 })
     password: string
 
-    @Column({ type: 'varchar' })
-    salt: string
-
-    @Column({ type: 'varchar' })
-    name: string
+    @Column({ type: 'varchar', length: 20 })
+    nickname: string
 
     @CreateDateColumn({ type: 'datetime' })
     createdAt: Date   
