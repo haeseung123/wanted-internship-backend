@@ -1,16 +1,19 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt'
+import { JwtService } from '@nestjs/jwt';
 
 import { UsersService } from 'src/users/users.service';
 import { SignInUserDto } from './dto/signin-users.dto';
+import { Payload } from './security/payload.interface';
+import { UsersEntity } from 'src/users/entities/users.entity';
 
 
 
 @Injectable()
 export class AuthService {
     constructor(
-        private usersService: UsersService
-        
+        private usersService: UsersService,
+        private  jwtService: JwtService
     ) {}
 
     async signIn(signInUserDto: SignInUserDto): Promise<string> {
@@ -28,8 +31,22 @@ export class AuthService {
             throw new UnauthorizedException('틀린 비밀번호 입니다.')
         }
 
-        return '로그인 성공'
+        const payload = {
+            sub: user.email,
+            username: user.nickname
+        }
+
+        const accessToken = this.jwtService.sign(payload)
+        return accessToken
+
     }
+
+    async tokenValidateUser(payload: Payload): Promise<UsersEntity | undefined> {
+        return await this.usersService.findByEmail(payload.sub)
+    }
+
+
+
 
 
 }
