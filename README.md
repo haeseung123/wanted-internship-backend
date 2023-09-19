@@ -1,6 +1,11 @@
+<br>
+<br>
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
+<p align="center">Nest.js / TypeORM / MYSQL</p>
+
+<br>
 
 #### 원티드 프리온보딩 인턴쉽 백엔드
 과제 제출용 X, 연습용 O
@@ -53,7 +58,10 @@ pagination 기능 구현 (1-5)
 게시글의 ID를 받아 해당 게시글 삭제
 게시글을 삭제할 수 있는 사용자는 게시글 작성자여야만 함
 
+<br>
 
+#### ERD
+![nest-api](https://github.com/haeseung123/wanted-internship-backend/assets/106800437/477c2bef-5494-47f7-bd02-1ce41c77c413)
 
 
 #### Running the app
